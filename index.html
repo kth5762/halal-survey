@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>할랄 화장품 원료 정보 등록 설문 | 케미랜드</title>
+<title>할랄 화장품 원료 정보 등록 설문 | 한국의약품시험연구원</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
@@ -528,8 +528,8 @@
     <div class="brand">
       <div class="brand-mark">CL</div>
       <div class="brand-text">
-        <div class="ko">㈜케미랜드 · 할랄 원료 정보 등록 시스템</div>
-        <div class="en">Chemiland — Halal Ingredient Database Survey</div>
+        <div class="ko">한국의약품시험연구원 · 할랄 원료 정보 등록 시스템</div>
+        <div class="en">KPTR — Halal Ingredient Database Survey</div>
       </div>
     </div>
     <div class="org-tag">
@@ -555,7 +555,7 @@
     <div class="doc-info">
       <div class="cell"><div class="label">접 수 번 호</div><div class="value">자동 발급</div></div>
       <div class="cell"><div class="label">조 사 기 간</div><div class="value">2026.04.01 — 05.31</div></div>
-      <div class="cell"><div class="label">담 당 기 관</div><div class="value">㈜케미랜드 할랄관리팀</div></div>
+      <div class="cell"><div class="label">담 당 기 관</div><div class="value">한국의약품시험연구원</div></div>
       <div class="cell"><div class="label">소요 시간</div><div class="value">약 12분</div></div>
     </div>
   </div>
@@ -608,7 +608,7 @@
         </div>
         <div class="section-body">
           <div class="row-group">
-            <div class="field"><label class="lab">기업명 <span class="req">*</span></label><input type="text" placeholder="예) ㈜케미랜드" data-required></div>
+            <div class="field"><label class="lab">기업명 <span class="req">*</span></label><input type="text" placeholder="예) (주)케미랜드" data-required></div>
             <div class="field"><label class="lab">사업자등록번호 <span class="req">*</span></label><input type="text" placeholder="000-00-00000" data-required></div>
             <div class="field"><label class="lab">대표자명</label><input type="text" placeholder="홍길동"></div>
             <div class="field"><label class="lab">설립년도</label><input type="text" placeholder="YYYY"></div>
@@ -912,7 +912,7 @@
       <!-- Actions -->
       <div class="actions">
         <div class="info">
-          작성 중 <strong style="color:var(--ink)">자동 임시 저장</strong>됩니다. · 문의: halal@chemiland.co.kr
+          작성 중 <strong style="color:var(--ink)">자동 임시 저장</strong>됩니다. · 문의: halal_support@gmail.com
         </div>
         <div class="btn-group">
           <button class="btn" type="button" onclick="saveDraft()">임시 저장</button>
@@ -946,7 +946,7 @@
       </div>
     </div>
     <div class="copy">
-      <span>© 2026 ㈜케미랜드 · 할랄 원료 정보 등록 시스템</span>
+      <span>© 2026 한국의약품시험연구원 · 할랄 원료 정보 등록 시스템</span>
       <span>v 1.0 · KPTR-HLL-2026</span>
     </div>
   </div>
@@ -1294,7 +1294,7 @@
     } catch (err) {
       console.error(err);
       alert('제출 중 오류가 발생했습니다.\n\n' + (err.message || err) +
-            '\n\n잠시 후 다시 시도하시거나, 담당자(halal@chemiland.co.kr)에게 문의해 주세요.');
+            '\n\n잠시 후 다시 시도하시거나, 담당자(halal_support@gmail.com)에게 문의해 주세요.');
     } finally {
       setSubmitState('idle');
     }
