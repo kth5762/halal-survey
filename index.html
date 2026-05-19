@@ -586,13 +586,10 @@
       <div class="toc-label">CONTENTS</div>
       <ul class="toc-list" id="tocList">
         <li><a href="#s1" data-target="s1"><span class="num">01</span><span>응답 기업 정보</span></a></li>
-        <li><a href="#s2" data-target="s2"><span class="num">02</span><span>제조 기반 현황</span></a></li>
-        <li><a href="#s3" data-target="s3"><span class="num">03</span><span>할랄 인증 보유</span></a></li>
-        <li><a href="#s4" data-target="s4"><span class="num">04</span><span>공급 정보</span></a></li>
-        <li><a href="#s5" data-target="s5"><span class="num">05</span><span>동물 미사용 증빙</span></a></li>
-        <li><a href="#s6" data-target="s6"><span class="num">06</span><span>기타 보유 인증</span></a></li>
-        <li><a href="#s7" data-target="s7"><span class="num">07</span><span>증빙자료 첨부</span></a></li>
-        <li><a href="#s8" data-target="s8"><span class="num">08</span><span>DB 등재 구분</span></a></li>
+        <li><a href="#s2" data-target="s2"><span class="num">02</span><span>할랄 인증 보유</span></a></li>
+        <li><a href="#s3" data-target="s3"><span class="num">03</span><span>동물 미사용 증빙</span></a></li>
+        <li><a href="#s4" data-target="s4"><span class="num">04</span><span>증빙자료 첨부</span></a></li>
+        <li><a href="#s5" data-target="s5"><span class="num">05</span><span>DB 등재 구분</span></a></li>
       </ul>
       <div class="progress-block">
         <div class="row">
@@ -632,56 +629,6 @@
               <input type="text" placeholder="000-00-00000" data-required>
               <div class="field-help">10자리 숫자 (000-00-00000) 형식.</div>
             </div>
-            <div class="field">
-              <label class="lab">대표자명</label>
-              <input type="text" placeholder="홍길동">
-              <div class="field-help">사업자등록증 상의 대표자.</div>
-            </div>
-            <div class="field">
-              <label class="lab">설립년도</label>
-              <input type="text" placeholder="YYYY">
-              <div class="field-help">법인 설립 기준 4자리 연도.</div>
-            </div>
-            <div class="field full">
-              <label class="lab">본사 소재지 <span class="req">*</span></label>
-              <input type="text" placeholder="도로명 주소 입력" data-required>
-              <div class="field-help">도로명 주소 권장. 공장이 별도라면 다음 섹션의 '제조소 위치'에 추가 기재해 주세요.</div>
-            </div>
-            <div class="field">
-              <label class="lab">담당자명 <span class="req">*</span></label>
-              <input type="text" placeholder="실무 담당자" data-required>
-              <div class="field-help">본 설문 회신 및 후속 컨설팅 연락이 가능한 실무 담당자.</div>
-            </div>
-            <div class="field">
-              <label class="lab">부서 / 직책</label>
-              <input type="text" placeholder="예) 품질관리팀 / 책임">
-              <div class="field-help">실무 부서 및 직책.</div>
-            </div>
-            <div class="field">
-              <label class="lab">연락처 <span class="req">*</span></label>
-              <input type="tel" placeholder="010-0000-0000" data-required>
-              <div class="field-help">회신이 빠른 휴대전화 권장.</div>
-            </div>
-            <div class="field">
-              <label class="lab">이메일 <span class="req">*</span></label>
-              <input type="email" placeholder="contact@company.com" data-required>
-              <div class="field-help">인증·컨설팅 안내가 발송될 주소.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 02. 제조 기반 -->
-      <section class="section" id="s2">
-        <div class="section-head">
-          <div class="num-large">02</div>
-          <div>
-            <h2 class="serif">제조 기반 및 운영 현황</h2>
-            <p>할랄 인증 대응 가능성 진단을 위한 제조 인프라 및 운영 수준 정보입니다.</p>
-          </div>
-        </div>
-        <div class="section-body">
-          <div class="row-group">
             <div class="field full">
               <label class="lab">기업 유형 <span class="req">*</span></label>
               <div class="opt-grid">
@@ -689,60 +636,41 @@
                 <label><input type="radio" name="biztype" /><span>OEM/ODM</span></label>
                 <label><input type="radio" name="biztype" /><span>완제품 제조</span></label>
                 <label><input type="radio" name="biztype" /><span>유통/수입</span></label>
-                <label><input type="radio" name="biztype" /><span>기타</span></label>
               </div>
               <div class="field-help">주력 사업 형태 1개 선택. 가장 가까운 항목을 골라 주세요.</div>
             </div>
             <div class="field">
-              <label class="lab">제조소 위치 (국가/지역)</label>
-              <input type="text" placeholder="예) 대한민국 / 안성">
-              <div class="field-help">자사 공장 또는 주 위탁 제조소 소재지. 다수일 경우 대표 1곳.</div>
+              <label class="lab">담당자명 <span class="req">*</span></label>
+              <input type="text" placeholder="실무 담당자" data-required>
+              <div class="field-help">본 설문 회신 및 후속 컨설팅 연락이 가능한 실무 담당자.</div>
             </div>
             <div class="field">
-              <label class="lab">연간 생산 규모 (톤)</label>
-              <input type="text" placeholder="숫자 입력">
-              <div class="field-help">대략값으로 무방합니다. 규모 파악이 목적이므로 추정치도 가능.</div>
+              <label class="lab">연락처 <span class="req">*</span></label>
+              <input type="tel" placeholder="010-0000-0000" data-required>
+              <div class="field-help">할랄 제품 문의 시 대응 가능한 연락처.</div>
             </div>
             <div class="field full">
-              <label class="lab">현재 보유 품질·관리 시스템 <span class="hint">(중복 선택 가능)</span></label>
-              <div class="opt-grid">
-                <label><input type="checkbox" /><span>CGMP</span></label>
-                <label><input type="checkbox" /><span>ISO 9001</span></label>
-                <label><input type="checkbox" /><span>ISO 14001</span></label>
-                <label><input type="checkbox" /><span>ISO 22716</span></label>
-                <label><input type="checkbox" /><span>EFfCI-GMP</span></label>
-                <label><input type="checkbox" /><span>HACCP</span></label>
-                <label><input type="checkbox" /><span>해당 없음</span></label>
-              </div>
-              <div class="field-help">현재 보유한 인증을 모두 선택해 주세요. 할랄 인증 대응력의 기초 지표로 활용됩니다.</div>
-            </div>
-            <div class="field full">
-              <label class="lab">할랄 전담 조직 운영 여부</label>
-              <div class="opt-grid">
-                <label><input type="radio" name="halalteam" /><span>전담팀 운영</span></label>
-                <label><input type="radio" name="halalteam" /><span>겸직 담당자 지정</span></label>
-                <label><input type="radio" name="halalteam" /><span>미지정</span></label>
-              </div>
-              <div class="field-help">할랄 인증·관리를 책임지는 조직 운영 형태. 미지정 시 향후 컨설팅 우선 대상이 됩니다.</div>
+              <label class="lab">이메일 <span class="req">*</span></label>
+              <input type="email" placeholder="contact@company.com" data-required>
+              <div class="field-help">할랄 제품 문의 시 대응 가능한 이메일.</div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 03. 할랄 인증 보유 정보 (인증 단위로 원료 묶음) -->
-      <section class="section" id="s3">
+      <!-- 02. 할랄 인증 보유 정보 (제품 단위) -->
+      <section class="section" id="s2">
         <div class="section-head">
-          <div class="num-large">03</div>
+          <div class="num-large">02</div>
           <div>
             <h2 class="serif">할랄 인증 보유 정보</h2>
-            <p>현재 보유 중인 할랄 인증을 등록해 주세요. 인증서별로 등재된 원료를 함께 입력합니다.</p>
+            <p>현재 보유 중인 할랄 인증을 등록해 주세요. 인증된 제품 단위로 입력합니다.</p>
           </div>
         </div>
         <div class="section-body">
           <div class="section-note">
-            원료 기업의 일반적인 인증 발급 방식(원료 단위 또는 원료군 일괄)을 반영한 입력 구조입니다.
-            <strong>인증서 1건 → 해당 인증에 포함된 원료 다건</strong>의 형태로 등록해 주세요.
-            보유 인증이 여러 건인 경우 [+ 인증 추가] 버튼으로 추가 등록이 가능합니다.
+            <strong>제품 1건 → 해당 제품에 등재된 원료 다건</strong>의 형태로 등록해 주세요.
+            보유한 인증 제품이 여러 건인 경우 [+ 할랄 인증 제품 추가] 버튼으로 추가 등록이 가능합니다.
           </div>
           <div class="field full" style="margin-bottom:18px;">
             <label class="lab">할랄 인증 보유 여부 <span class="req">*</span></label>
@@ -755,120 +683,52 @@
           </div>
 
           <div id="halalCertList"></div>
-          <button class="btn-add" id="addHalalCert" type="button">＋ 할랄 인증 추가하기</button>
+          <button class="btn-add" id="addHalalCert" type="button">＋ 할랄 인증 제품 추가하기</button>
         </div>
       </section>
 
-      <!-- 04. 공급 및 거래 정보 -->
-      <section class="section" id="s4">
+      <!-- 03. 동물 미사용 원료 증빙 -->
+      <section class="section" id="s3">
         <div class="section-head">
-          <div class="num-large">04</div>
-          <div>
-            <h2 class="serif">공급 및 거래 정보</h2>
-            <p>원료 공급망 정보 구축을 위한 공급 가능 여부 및 거래 조건입니다.</p>
-          </div>
-        </div>
-        <div class="section-body">
-          <div class="row-group">
-            <div class="field">
-              <label class="lab">제조사 / 공급사명 <span class="req">*</span></label>
-              <input type="text" placeholder="공급 주체 기업명" data-required>
-              <div class="field-help">실제 원료를 제조한 회사명. 자사 제조면 자사명 그대로.</div>
-            </div>
-            <div class="field">
-              <label class="lab">생산국 <span class="req">*</span></label>
-              <input type="text" placeholder="예) Republic of Korea" data-required>
-              <div class="field-help">원료가 제조된 국가.</div>
-            </div>
-            <div class="field">
-              <label class="lab">국내 공급 가능 여부</label>
-              <div class="opt-grid">
-                <label><input type="radio" name="supkr" /><span>가능</span></label>
-                <label><input type="radio" name="supkr" /><span>제한적</span></label>
-                <label><input type="radio" name="supkr" /><span>불가</span></label>
-              </div>
-              <div class="field-help">국내 화장품 제조사에 직접 공급 가능 여부. '제한적'은 일정 조건 하 공급.</div>
-            </div>
-            <div class="field">
-              <label class="lab">최소 주문 수량 (MOQ)</label>
-              <input type="text" placeholder="예) 25 kg">
-              <div class="field-help">단위(kg·L 등)와 함께 기재. 협의 가능하면 그대로 기재해 주세요.</div>
-            </div>
-            <div class="field full">
-              <label class="lab">샘플 제공 가능 여부</label>
-              <div class="opt-grid">
-                <label><input type="radio" name="sample" /><span>제공 가능</span></label>
-                <label><input type="radio" name="sample" /><span>유료 제공</span></label>
-                <label><input type="radio" name="sample" /><span>제공 불가</span></label>
-              </div>
-              <div class="field-help">잠재 거래처 평가용 샘플 제공 정책.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 05. 동물 미사용 원료 증빙 -->
-      <section class="section" id="s5">
-        <div class="section-head">
-          <div class="num-large">05</div>
+          <div class="num-large">03</div>
           <div>
             <h2 class="serif">동물 미사용 원료 증빙</h2>
             <p>정식 할랄 인증이 없더라도 동물 미사용을 증빙할 수 있으면 예비 등재 대상이 됩니다.</p>
           </div>
         </div>
         <div class="section-body">
-          <div class="section-note">
-            기업에서 보유한 원료 중 <strong>동물 미사용 원료 증빙 서류 발행이 가능한 원료</strong>를 입력해 주세요.
-            여러 건 등록 가능합니다.
-          </div>
           <div class="field full" style="margin-bottom:18px;">
-            <label class="lab">동물 미사용 Certificate 보유 여부 <span class="req">*</span></label>
+            <label class="lab">동물 미사용 증명서 발행 가능 여부 <span class="req">*</span></label>
             <div class="opt-grid">
-              <label><input type="radio" name="anc" /><span>자체 확인서 발행 가능</span></label>
-              <label><input type="radio" name="anc" /><span>공급처 확인서 보유</span></label>
-              <label><input type="radio" name="anc" /><span>제3자 인증서 보유</span></label>
-              <label><input type="radio" name="anc" /><span>해당 없음</span></label>
+              <label><input type="radio" name="anc" data-toggle="afBody" data-val="possible" /><span>가능</span></label>
+              <label><input type="radio" name="anc" data-toggle="afBody" data-val="impossible" /><span>불가능</span></label>
             </div>
-            <div class="field-help">동물 유래 원료를 사용하지 않음을 증빙할 수 있는 자료 중 가장 높은 수준을 선택해 주세요.</div>
+            <div class="field-help">동물 유래 원료를 사용하지 않음을 증명할 수 있는 서류 발행이 가능한지 선택해 주세요.</div>
           </div>
 
-          <div id="animalFreeList"></div>
-          <button class="btn-add" id="addAnimalFree" type="button">＋ 동물 미사용 원료 추가하기</button>
+          <div id="afBody" style="display:none;">
+            <div class="section-note">
+              발행 가능한 원료의 정보를 입력해 주세요. 여러 건 등록이 가능합니다.
+            </div>
+            <div id="animalFreeList"></div>
+            <button class="btn-add" id="addAnimalFree" type="button">＋ 동물 미사용 원료 추가하기</button>
+          </div>
         </div>
       </section>
 
-      <!-- 06. 기타 보유 인증 -->
-      <section class="section" id="s6">
+      <!-- 04. 증빙자료 첨부 -->
+      <section class="section" id="s4">
         <div class="section-head">
-          <div class="num-large">06</div>
-          <div>
-            <h2 class="serif">기타 보유 인증</h2>
-            <p>할랄 외 보유하고 계신 관련 인증을 등록해 주십시오. 비건·코셔·RSPO 등은 할랄 적합성 검토 시 보조 자료로 인정됩니다.</p>
-          </div>
-        </div>
-        <div class="section-body">
-          <div class="section-note">
-            보유한 인증 종류를 선택하고, 각 인증에 해당하는 원료를 함께 입력해 주세요.
-            인증 항목별로 [+ 원료 추가] 버튼을 통해 다건 등록이 가능합니다.
-          </div>
-
-          <div id="otherCertGroups"></div>
-        </div>
-      </section>
-
-      <!-- 07. 증빙자료 첨부 -->
-      <section class="section" id="s7">
-        <div class="section-head">
-          <div class="num-large">07</div>
+          <div class="num-large">04</div>
           <div>
             <h2 class="serif">증빙자료 첨부</h2>
-            <p>응답 내용을 뒷받침할 수 있는 자료를 자유롭게 첨부해 주세요.</p>
+            <p>응답 내용을 뒷받침할 수 있는 자료를 첨부해 주세요.</p>
           </div>
         </div>
         <div class="section-body">
           <div class="section-note">
-            가능한 자료만 제출하셔도 무방하며, 누락분은 후속 컨설팅 과정에서 보완 가능합니다.
-            첨부가 어려운 경우 본 항목은 건너뛰셔도 됩니다.
+            응답 정보의 검증을 위해 <strong>할랄 인증서 및 동물 미사용 증명서</strong> 파일을 첨부해 주세요.
+            여러 파일 첨부가 가능하며, 가능한 자료만 제출하셔도 무방합니다.
           </div>
           <label class="upload" for="fileUp">
             <span class="ic">↑</span>
@@ -880,10 +740,10 @@
         </div>
       </section>
 
-      <!-- 08. DB 등재 구분 -->
-      <section class="section" id="s8">
+      <!-- 05. DB 등재 구분 -->
+      <section class="section" id="s5">
         <div class="section-head">
-          <div class="num-large">08</div>
+          <div class="num-large">05</div>
           <div>
             <h2 class="serif">DB 등재 희망 구분</h2>
             <p>응답 정보의 등재 트랙을 선택해 주십시오. 이후 검토를 거쳐 식약처 AI 코스봇 시스템에 반영됩니다.</p>
@@ -991,9 +851,9 @@
   function halalIngredientRow(certIdx, ingIdx) {
     return `
       <div class="ing-sub-row" data-ing-idx="${ingIdx}" style="display:grid;grid-template-columns:1fr 1fr 1fr 28px;gap:8px;margin-bottom:6px;align-items:center;">
-        <input type="text" class="hcert-ing-name-kr" placeholder="원료명 (국문)" />
         <input type="text" class="hcert-ing-name-en" placeholder="원료명 (영문)" />
         <input type="text" class="hcert-ing-inci"    placeholder="INCI 명" />
+        <input type="text" class="hcert-ing-cas"     placeholder="CAS No." />
         <button type="button" class="btn-remove" style="padding:4px 0;font-size:11px;" onclick="this.parentElement.remove()">×</button>
       </div>`;
   }
@@ -1004,11 +864,24 @@
     return `
       <div class="ing-card" data-cert-id="${idx}">
         <div class="ing-card-head">
-          <div class="ttl"><span class="ord">No.${String(idx).padStart(2,'0')}</span>할랄 인증서</div>
+          <div class="ttl"><span class="ord">No.${String(idx).padStart(2,'0')}</span>할랄 인증 제품</div>
           ${idx > 1 ? `<button class="btn-remove" type="button" onclick="removeHalalCert(${idx})">삭제</button>` : ''}
         </div>
         <div class="ing-card-body">
           <div class="row-group">
+            <div class="field full">
+              <label class="lab">제품명</label>
+              <input type="text" class="hcert-product" placeholder="할랄 인증을 받은 제품의 명칭" />
+              <div class="field-help">인증서에 등재된 제품명을 입력해 주세요.</div>
+            </div>
+            <div class="field full">
+              <label class="lab">공급 정보</label>
+              <div class="opt-grid">
+                <label><input type="radio" name="supply_${idx}" /><span>자사 제조품</span></label>
+                <label><input type="radio" name="supply_${idx}" /><span>유통/수입품</span></label>
+              </div>
+              <div class="field-help">본 제품이 자사에서 제조되는 제품인지, 외부에서 유통/수입되는 제품인지 선택해 주세요.</div>
+            </div>
             <div class="field">
               <label class="lab">인증기관명</label>
               <select class="hcert-authority"><option value="">선택해 주세요</option>${authOptions}</select>
@@ -1033,43 +906,10 @@
           <div style="margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);">
             <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;">
               <strong style="font-size:12.5px;color:var(--ink-soft);">본 인증에 등재된 원료</strong>
-              <span style="font-size:11px;color:var(--muted);">국문명 / 영문명 / INCI</span>
+              <span style="font-size:11px;color:var(--muted);">원료명(영문) / INCI / CAS No.</span>
             </div>
             <div class="hcert-ing-list" id="hcertIngList${idx}"></div>
             <button type="button" class="btn-add" style="padding:8px;font-size:12px;margin-top:6px;" onclick="addHalalIngredient(${idx})">＋ 원료 추가</button>
-          </div>
-
-          <div style="margin-top:14px;">
-            <details>
-              <summary style="cursor:pointer;font-size:12px;color:var(--ink-soft);font-weight:600;">▸ 할랄 적합성 정보 (선택 입력)</summary>
-              <div class="row-group" style="margin-top:14px;">
-                <div class="field full">
-                  <label class="lab">원료 유래 분류 (대표)</label>
-                  <div class="opt-grid">
-                    <label><input type="radio" name="origin_${idx}" /><span>식물성</span></label>
-                    <label><input type="radio" name="origin_${idx}" /><span>동물성</span></label>
-                    <label><input type="radio" name="origin_${idx}" /><span>미생물 발효</span></label>
-                    <label><input type="radio" name="origin_${idx}" /><span>화학 합성</span></label>
-                    <label><input type="radio" name="origin_${idx}" /><span>광물 / 무기</span></label>
-                    <label><input type="radio" name="origin_${idx}" /><span>혼합</span></label>
-                  </div>
-                  <div class="field-help">본 인증서에 등재된 원료들의 대표 유래. 혼합 원료의 경우 주 유래 1개.</div>
-                </div>
-                <div class="field full">
-                  <label class="lab">민감 성분 사용 여부</label>
-                  <div class="opt-grid">
-                    <label><input type="radio" name="sensitive_${idx}" /><span>없음</span></label>
-                    <label><input type="radio" name="sensitive_${idx}" /><span>있음</span></label>
-                    <label><input type="radio" name="sensitive_${idx}" /><span>확인 필요</span></label>
-                  </div>
-                  <div class="field-help">돼지 유래·알코올·혈액 등 샤리아 기준 Haram 가능 성분의 포함 여부.</div>
-                </div>
-                <div class="field full">
-                  <label class="lab">공정상 유의사항</label>
-                  <textarea class="hcert-process-note" placeholder="동물성 원료와 같은 라인 사용, 세척 절차, 알코올 용매 사용 등 인증 심사 시 쟁점이 될 수 있는 사항. 해당 없으면 공란."></textarea>
-                </div>
-              </div>
-            </details>
           </div>
         </div>
       </div>`;
@@ -1106,10 +946,11 @@
     return `
       <div class="ing-card" data-af-id="${idx}" style="margin-bottom:10px;">
         <div class="ing-card-body" style="padding:14px 18px;">
-          <div style="display:grid;grid-template-columns:30px 1fr 1fr 28px;gap:10px;align-items:center;">
+          <div style="display:grid;grid-template-columns:30px 1fr 1fr 1fr 28px;gap:10px;align-items:center;">
             <span style="font-family:'Noto Serif KR',serif;color:var(--accent);font-size:13px;">${String(idx).padStart(2,'0')}</span>
             <input type="text" class="af-name" placeholder="원료명" />
             <input type="text" class="af-inci" placeholder="INCI 명" />
+            <input type="text" class="af-cas"  placeholder="CAS No." />
             <button type="button" class="btn-remove" style="padding:4px 0;font-size:11px;" onclick="removeAnimalFree(${idx})">×</button>
           </div>
         </div>
@@ -1129,72 +970,12 @@
   document.getElementById('addAnimalFree').addEventListener('click', addAnimalFree);
   addAnimalFree();
 
-  // ============================================================
-  //  Other certs — per-cert ingredient lists
-  // ============================================================
-  const otherCertGroups = document.getElementById('otherCertGroups');
-  const otherCertDefs = [
-    { key: 'vegan',     label: 'Vegan (비건)',           desc: '동물성 원료·동물 실험 미사용 인증' },
-    { key: 'kosher',    label: 'Kosher (코셔)',          desc: '유대교 율법 기준 적합성 인증' },
-    { key: 'rspo',      label: 'RSPO',                   desc: '지속가능 팜오일 인증' },
-    { key: 'reach',     label: 'REACH',                  desc: 'EU 화학물질 등록·평가·허가' },
-    { key: 'cosmos',    label: 'COSMOS',                 desc: '유럽 천연·유기농 화장품 인증' },
-    { key: 'ecocert',   label: 'ECOCERT',                desc: '유기농·천연 화장품 인증' },
-    { key: 'usda',      label: 'USDA Organic',           desc: '미국 농무부 유기농 인증' },
-    { key: 'cruelty',   label: 'Cruelty-Free',           desc: '동물 실험 미사용 인증' },
-  ];
-
-  function otherCertGroupTemplate(def) {
-    return `
-      <div class="ing-card" data-cert-key="${def.key}" style="margin-bottom:14px;">
-        <div class="ing-card-head" style="display:flex;align-items:center;gap:14px;">
-          <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:600;color:var(--ink-soft);font-size:13px;">
-            <input type="checkbox" class="oc-toggle" data-target="${def.key}" style="width:14px;height:14px;accent-color:var(--accent);" />
-            <span>${def.label}</span>
-          </label>
-          <span style="font-size:11px;color:var(--muted);">${def.desc}</span>
-        </div>
-        <div class="ing-card-body oc-body" id="ocBody_${def.key}" style="display:none;padding:14px 18px;">
-          <div style="font-size:11.5px;color:var(--muted);margin-bottom:10px;">본 인증에 해당하는 원료 (원료명 / INCI)</div>
-          <div class="oc-ing-list" id="ocIngList_${def.key}"></div>
-          <button type="button" class="btn-add" style="padding:8px;font-size:12px;margin-top:4px;" onclick="addOtherCertIng('${def.key}')">＋ 원료 추가</button>
-        </div>
-      </div>`;
-  }
-
-  function otherCertIngRow(certKey, idx) {
-    return `
-      <div class="oc-ing-row" style="display:grid;grid-template-columns:30px 1fr 1fr 28px;gap:10px;margin-bottom:6px;align-items:center;">
-        <span style="font-family:'Noto Serif KR',serif;color:var(--accent);font-size:12px;">${String(idx).padStart(2,'0')}</span>
-        <input type="text" class="oc-ing-name" placeholder="원료명" />
-        <input type="text" class="oc-ing-inci" placeholder="INCI 명" />
-        <button type="button" class="btn-remove" style="padding:4px 0;font-size:11px;" onclick="this.parentElement.remove()">×</button>
-      </div>`;
-  }
-
-  function addOtherCertIng(key) {
-    const list = document.getElementById(`ocIngList_${key}`);
-    if (!list) return;
-    const idx = list.children.length + 1;
-    list.insertAdjacentHTML('beforeend', otherCertIngRow(key, idx));
-    bindInputs();
-  }
-
-  // Initialize all other-cert groups
-  otherCertDefs.forEach(def => {
-    otherCertGroups.insertAdjacentHTML('beforeend', otherCertGroupTemplate(def));
-  });
-  // Toggle body visibility on checkbox
-  document.querySelectorAll('.oc-toggle').forEach(cb => {
-    cb.addEventListener('change', () => {
-      const body = document.getElementById(`ocBody_${cb.dataset.target}`);
+  // Toggle animal-free body based on 가능/불가능 radio
+  document.querySelectorAll('input[name="anc"][data-toggle="afBody"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const body = document.getElementById('afBody');
       if (!body) return;
-      if (cb.checked) {
-        body.style.display = 'block';
-        if (!body.querySelector('.oc-ing-row')) addOtherCertIng(cb.dataset.target);
-      } else {
-        body.style.display = 'none';
-      }
+      body.style.display = r.dataset.val === 'possible' ? 'block' : 'none';
     });
   });
 
@@ -1263,7 +1044,7 @@
 
   // ========== Submit ==========
   // ▼▼▼ 배포 후 발급되는 Apps Script 웹앱 URL 을 여기에 붙여넣으세요 ▼▼▼
-  const SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbyIQxa0v-rgqNcmGzuZM7-gkQa7lnxhrAYE9HXOJofPlU3TyfifjDgse13Ps6cChw/exec';
+  const SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/REPLACE_WITH_YOUR_DEPLOYMENT_ID/exec';
 
   function saveDraft(){
     const btn = event.target;
@@ -1295,112 +1076,66 @@
       const span = r.parentElement.querySelector('span');
       return span ? span.textContent.trim() : '';
     };
-    const checks = (root) => {
-      // Only top-level qms/halalteam checkboxes — exclude inner card checkboxes
-      return Array.from(root.querySelectorAll(':scope > .section-body > .row-group input[type="checkbox"]:checked, :scope > .section-body input[type="checkbox"]:checked'))
-        .filter(c => !c.closest('.ing-card'))
-        .map(c => {
-          const span = c.parentElement.querySelector('span');
-          return span ? span.textContent.trim() : '';
-        })
-        .filter(Boolean);
-    };
 
-    const s1 = sec('s1');
-    const s2 = sec('s2');
-    const s3 = sec('s3');   // 할랄 인증 보유
-    const s4 = sec('s4');   // 공급 정보
-    const s5 = sec('s5');   // 동물 미사용
-    const s6 = sec('s6');   // 기타 인증
-    const s8 = sec('s8');   // DB 등재 구분
+    const s1 = sec('s1');   // 응답 기업 정보
+    const s2 = sec('s2');   // 할랄 인증 보유
+    const s3 = sec('s3');   // 동물 미사용
+    const s5 = sec('s5');   // DB 등재 구분
 
-    // === 03 할랄 인증 카드들 (인증서 단위 + 등재 원료 다건) ===
-    const halalCerts = Array.from(s3.querySelectorAll('.ing-card[data-cert-id]')).map(card => {
+    // === 02 할랄 인증 카드들 (제품 단위 + 등재 원료 다건) ===
+    const halalCerts = Array.from(s2.querySelectorAll('.ing-card[data-cert-id]')).map(card => {
       const certId = card.dataset.certId;
       const ingredients = Array.from(card.querySelectorAll('.ing-sub-row')).map(r => ({
-        nameKr: (r.querySelector('.hcert-ing-name-kr')||{}).value || '',
         nameEn: (r.querySelector('.hcert-ing-name-en')||{}).value || '',
         inci:   (r.querySelector('.hcert-ing-inci')||{}).value   || '',
-      })).filter(i => i.nameKr || i.nameEn || i.inci);
-      const originRadio = card.querySelector(`input[name="origin_${certId}"]:checked`);
-      const sensitiveRadio = card.querySelector(`input[name="sensitive_${certId}"]:checked`);
+        cas:    (r.querySelector('.hcert-ing-cas')||{}).value    || '',
+      })).filter(i => i.nameEn || i.inci || i.cas);
+      const supplyRadio = card.querySelector(`input[name="supply_${certId}"]:checked`);
       return {
-        authority:    (card.querySelector('.hcert-authority')||{}).value || '',
-        certNo:       (card.querySelector('.hcert-no')||{}).value || '',
-        issueDate:    (card.querySelector('.hcert-issue')||{}).value || '',
-        expiryDate:   (card.querySelector('.hcert-expiry')||{}).value || '',
+        productName: (card.querySelector('.hcert-product')||{}).value || '',
+        supplyType:  supplyRadio ? supplyRadio.parentElement.querySelector('span').textContent.trim() : '',
+        authority:   (card.querySelector('.hcert-authority')||{}).value || '',
+        certNo:      (card.querySelector('.hcert-no')||{}).value || '',
+        issueDate:   (card.querySelector('.hcert-issue')||{}).value || '',
+        expiryDate:  (card.querySelector('.hcert-expiry')||{}).value || '',
         ingredients,
-        origin:       originRadio ? originRadio.parentElement.querySelector('span').textContent.trim() : '',
-        sensitiveUse: sensitiveRadio ? sensitiveRadio.parentElement.querySelector('span').textContent.trim() : '',
-        processNote:  (card.querySelector('.hcert-process-note')||{}).value || '',
       };
-    }).filter(c => c.authority || c.certNo || c.ingredients.length > 0);
+    }).filter(c => c.productName || c.authority || c.certNo || c.ingredients.length > 0);
 
-    // === 05 동물 미사용 원료 ===
-    const animalFreeIngredients = Array.from(s5.querySelectorAll('.ing-card[data-af-id]')).map(card => ({
+    // === 03 동물 미사용 원료 ===
+    const animalFreeIngredients = Array.from(s3.querySelectorAll('.ing-card[data-af-id]')).map(card => ({
       name: (card.querySelector('.af-name')||{}).value || '',
       inci: (card.querySelector('.af-inci')||{}).value || '',
-    })).filter(i => i.name || i.inci);
+      cas:  (card.querySelector('.af-cas') ||{}).value || '',
+    })).filter(i => i.name || i.inci || i.cas);
 
-    // === 06 기타 보유 인증 (인증별 원료) ===
-    const otherCertsData = Array.from(s6.querySelectorAll('.ing-card[data-cert-key]'))
-      .map(card => {
-        const toggle = card.querySelector('.oc-toggle');
-        if (!toggle || !toggle.checked) return null;
-        const labelEl = card.querySelector('.ing-card-head label span');
-        const label = labelEl ? labelEl.textContent.trim() : card.dataset.certKey;
-        const ingredients = Array.from(card.querySelectorAll('.oc-ing-row')).map(r => ({
-          name: (r.querySelector('.oc-ing-name')||{}).value || '',
-          inci: (r.querySelector('.oc-ing-inci')||{}).value || '',
-        })).filter(i => i.name || i.inci);
-        return { certName: label, ingredients };
-      })
-      .filter(Boolean);
-
-    // === 07 첨부 ===
+    // === 04 첨부 ===
     const fileInput = document.getElementById('fileUp');
     const attachments = fileInput && fileInput.files
       ? Array.from(fileInput.files).map(f => `${f.name} (${(f.size/1024).toFixed(1)}KB)`)
       : [];
 
     return {
-      // 01
+      // 01 응답 기업 정보
       companyName:      txt(s1, 0),
       bizRegNo:         txt(s1, 1),
-      ceoName:          txt(s1, 2),
-      foundedYear:      txt(s1, 3),
-      address:          txt(s1, 4),
-      contactName:      txt(s1, 5),
-      contactDept:      txt(s1, 6),
-      contactPhone:     txt(s1, 7),
-      contactEmail:     txt(s1, 8),
-      // 02
-      bizType:          radio(s2, 'biztype'),
-      factoryLocation:  txt(s2, 0),
-      annualOutput:     txt(s2, 1),
-      qmsCertList:      checks(s2),
-      halalTeam:        radio(s2, 'halalteam'),
-      // 03
-      hasHalal:         radio(s3, 'hashalal'),
+      bizType:          radio(s1, 'biztype'),
+      contactName:      txt(s1, 2),
+      contactPhone:     txt(s1, 3),
+      contactEmail:     txt(s1, 4),
+      // 02 할랄 인증
+      hasHalal:         radio(s2, 'hashalal'),
       halalCerts:       halalCerts,
-      // 04
-      supplierName:     txt(s4, 0),
-      productionCountry:txt(s4, 1),
-      supplyKR:         radio(s4, 'supkr'),
-      moq:              txt(s4, 2),
-      sample:           radio(s4, 'sample'),
-      // 05
-      animalCertType:   radio(s5, 'anc'),
+      // 03 동물 미사용
+      animalCertAvailable:   radio(s3, 'anc'),
       animalFreeIngredients: animalFreeIngredients,
-      // 06
-      otherCerts:       otherCertsData,
-      // 07
+      // 04 첨부
       attachments:      attachments,
-      // 08
-      dbType:           radio(s8, 'dbtype'),
-      extraNotes:       ta(s8, 0),
-      agreement:        s8.querySelector('input[type="checkbox"][data-required]') &&
-                        s8.querySelector('input[type="checkbox"][data-required]').checked ? '동의' : '미동의',
+      // 05 DB 등재
+      dbType:           radio(s5, 'dbtype'),
+      extraNotes:       ta(s5, 0),
+      agreement:        s5.querySelector('input[type="checkbox"][data-required]') &&
+                        s5.querySelector('input[type="checkbox"][data-required]').checked ? '동의' : '미동의',
     };
   }
 
