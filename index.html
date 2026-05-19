@@ -434,6 +434,83 @@
     gap: 16px;
   }
   .actions .info { font-size: 12px; color: var(--muted); }
+
+  /* Draft restore banner */
+  .draft-banner {
+    display: none;
+    align-items: center;
+    gap: 16px;
+    background: #fffbeb;
+    border: 1px solid #f0c674;
+    border-left: 3px solid #d49510;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: #6b5018;
+    border-radius: 2px;
+  }
+  .draft-banner.visible { display: flex; }
+  .draft-banner .icon {
+    font-size: 18px;
+    color: #d49510;
+    line-height: 1;
+  }
+  .draft-banner .text { flex: 1; line-height: 1.5; }
+  .draft-banner .text strong { color: #4a3810; }
+  .draft-banner .banner-time { font-family: 'Noto Serif KR', serif; }
+  .draft-banner .btns { display: flex; gap: 8px; flex-shrink: 0; }
+  .draft-banner .btn-banner {
+    padding: 7px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: 0.15s;
+  }
+  .draft-banner .btn-banner:hover {
+    background: #f5f5f0;
+    border-color: var(--ink-soft);
+  }
+  .draft-banner .btn-banner.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .draft-banner .btn-banner.primary:hover {
+    background: #002a52;
+    border-color: #002a52;
+  }
+
+  /* Save indicator */
+  .save-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-left: 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .save-indicator.visible { opacity: 1; }
+  .save-indicator::before {
+    content: "";
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #4caf50;
+  }
+  .save-indicator.saving::before {
+    background: #f0c674;
+    animation: pulse 1s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
   .btn-group { display: flex; gap: 8px; }
   .btn {
     padding: 12px 22px;
@@ -534,7 +611,7 @@
 <div class="gov-bar">
   <div class="wrap">
     <span>식품의약품안전처 위탁사업 · 2026 할랄 화장품 인증 지원</span>
-    <span>접수번호 자동 발급 · 응답 기한 2026.06.30</span>
+    <span>접수번호 자동 발급 · 응답 기한 2026.05.31</span>
   </div>
 </div>
 
@@ -570,7 +647,7 @@
     </p>
     <div class="doc-info">
       <div class="cell"><div class="label">접 수 번 호</div><div class="value">자동 발급</div></div>
-      <div class="cell"><div class="label">조 사 기 간</div><div class="value">2026.05.18 — 06.30</div></div>
+      <div class="cell"><div class="label">조 사 기 간</div><div class="value">2026.04.01 — 05.31</div></div>
       <div class="cell"><div class="label">담 당 기 관</div><div class="value">한국의약품시험연구원</div></div>
       <div class="cell"><div class="label">소요 시간</div><div class="value">약 12분</div></div>
     </div>
@@ -603,9 +680,24 @@
     <!-- Form -->
     <main class="form-area">
 
+      <!-- Draft restore banner -->
+      <div class="draft-banner" id="draftBanner">
+        <span class="icon">⏱</span>
+        <div class="text">
+          <strong>이전에 작성 중이던 내용이 있습니다.</strong><br>
+          <span class="banner-time"></span> 에 자동 저장된 데이터를 불러올 수 있습니다.
+        </div>
+        <div class="btns">
+          <button type="button" class="btn-banner btn-discard">새로 시작</button>
+          <button type="button" class="btn-banner primary btn-restore">이어 작성하기</button>
+        </div>
+      </div>
+
       <div class="notice">
         <strong>안내</strong> · 별표(<span class="req">*</span>) 항목은 필수 입력입니다.
         원료가 여러 종일 경우 [원료 추가] 버튼을 통해 다건 등록이 가능합니다.
+        작성 중 내용은 자동 저장되며, 같은 브라우저에서 이어 작성하실 수 있습니다.
+        (※ 첨부파일은 보안상 임시저장되지 않으므로 제출 시 다시 선택해 주세요.)
       </div>
 
       <!-- 01. 응답 기업 정보 -->
@@ -777,6 +869,7 @@
       <div class="actions">
         <div class="info">
           작성 중 <strong style="color:var(--ink)">자동 임시 저장</strong>됩니다. · 문의: Halal_support@gmail.com
+          <span class="save-indicator" id="saveIndicator">자동 저장됨</span>
         </div>
         <div class="btn-group">
           <button class="btn" type="button" onclick="saveDraft()">임시 저장</button>
@@ -1041,11 +1134,247 @@
   // ▼▼▼ 배포 후 발급되는 Apps Script 웹앱 URL 을 여기에 붙여넣으세요 ▼▼▼
   const SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxFDs7m-9OmI2FeiRkmtKrS8CxhdlN2m5-wXX6P2JBll_HxmL-iUTZdRoOthxwMFHJV/exec';
 
+  // ============================================================
+  //  임시 저장 / 복원 — localStorage 기반
+  // ============================================================
+  const DRAFT_KEY = 'halal_survey_draft_v5';
+  const DRAFT_VERSION = 5;
+  const AUTOSAVE_DELAY = 1500;  // 입력 멈춘 후 1.5초 디바운스
+
+  let autosaveTimer = null;
+  let lastSaveTime = null;
+  let isRestoringDraft = false;  // 복원 중에는 자동저장 비활성
+
+  function getDraftSnapshot() {
+    // collectFormData 를 재활용하되, 파일/제출 전용 키는 제거
+    const data = collectFormData();
+    delete data.files;
+    delete data._attachmentMeta;
+    delete data.attachments;
+    // agreement 는 제출 시 '동의'/'미동의' 문자열이지만, 드래프트에서는 boolean 으로 보관
+    const agreeBox = document.querySelector('#s5 input[type="checkbox"][data-required]');
+    data._agreementChecked = !!(agreeBox && agreeBox.checked);
+    delete data.agreement;
+    return data;
+  }
+
+  function saveDraftToStorage() {
+    if (isRestoringDraft) return false;
+    try {
+      const payload = {
+        version: DRAFT_VERSION,
+        savedAt: new Date().toISOString(),
+        data: getDraftSnapshot(),
+      };
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(payload));
+      lastSaveTime = new Date();
+      updateSaveIndicator('saved');
+      return true;
+    } catch (e) {
+      console.warn('Draft save failed:', e);
+      updateSaveIndicator('error');
+      return false;
+    }
+  }
+
+  function loadDraftFromStorage() {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (parsed.version !== DRAFT_VERSION) {
+        localStorage.removeItem(DRAFT_KEY);  // 구버전 데이터는 폐기
+        return null;
+      }
+      return parsed;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function clearDraft() {
+    try { localStorage.removeItem(DRAFT_KEY); } catch (_) {}
+  }
+
+  function scheduleAutosave() {
+    if (isRestoringDraft) return;
+    clearTimeout(autosaveTimer);
+    updateSaveIndicator('saving');
+    autosaveTimer = setTimeout(saveDraftToStorage, AUTOSAVE_DELAY);
+  }
+
+  function updateSaveIndicator(state) {
+    const indicator = document.getElementById('saveIndicator');
+    if (!indicator) return;
+    indicator.classList.remove('saving', 'visible');
+    if (state === 'saving') {
+      indicator.textContent = '저장 중…';
+      indicator.classList.add('saving', 'visible');
+    } else if (state === 'saved' && lastSaveTime) {
+      const hh = String(lastSaveTime.getHours()).padStart(2, '0');
+      const mm = String(lastSaveTime.getMinutes()).padStart(2, '0');
+      indicator.textContent = `자동 저장됨 · ${hh}:${mm}`;
+      indicator.classList.add('visible');
+    } else if (state === 'error') {
+      indicator.textContent = '저장 실패';
+      indicator.classList.add('visible');
+    } else {
+      indicator.textContent = '';
+    }
+  }
+
+  // ─── 드래프트 → 폼 복원 ───
+  function setTextByIdx(root, idx, value) {
+    const inputs = root.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"], input:not([type])');
+    if (inputs[idx]) inputs[idx].value = value || '';
+  }
+  function setRadioByValue(root, name, value) {
+    if (!value) return;
+    const radios = root.querySelectorAll(`input[type="radio"][name="${name}"]`);
+    radios.forEach(r => {
+      const span = r.parentElement.querySelector('span');
+      if (span && span.textContent.trim() === value) {
+        r.checked = true;
+        r.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    });
+  }
+
+  function restoreFormFromDraft(data) {
+    if (!data) return;
+    isRestoringDraft = true;
+    try {
+      // === 01 응답 기업 정보 ===
+      const s1 = document.getElementById('s1');
+      setTextByIdx(s1, 0, data.companyName);
+      setTextByIdx(s1, 1, data.bizRegNo);
+      setRadioByValue(s1, 'biztype', data.bizType);
+      setTextByIdx(s1, 2, data.contactPhone);
+      setTextByIdx(s1, 3, data.contactEmail);
+
+      // === 02 할랄 인증 ===
+      const s2 = document.getElementById('s2');
+      setRadioByValue(s2, 'hashalal', data.hasHalal);
+
+      // 기존 자동 생성된 카드 제거 후 재구성
+      halalCertList.innerHTML = '';
+      halalCertCount = 0;
+      const certs = Array.isArray(data.halalCerts) ? data.halalCerts : [];
+      if (certs.length === 0) {
+        addHalalCert();  // 빈 카드 1개
+      } else {
+        certs.forEach(cert => {
+          addHalalCert();
+          const card = halalCertList.lastElementChild;
+          const ingList = card.querySelector('.hcert-ing-list');
+          ingList.innerHTML = '';  // addHalalCert가 만든 빈 행 제거
+
+          const setVal = (sel, v) => {
+            const el = card.querySelector(sel);
+            if (el) el.value = v || '';
+          };
+          setVal('.hcert-product',   cert.productName);
+          setVal('.hcert-authority', cert.authority);
+          setVal('.hcert-no',        cert.certNo);
+          setVal('.hcert-issue',     cert.issueDate);
+          setVal('.hcert-expiry',    cert.expiryDate);
+          setRadioByValue(card, `supply_${halalCertCount}`, cert.supplyType);
+
+          const ings = Array.isArray(cert.ingredients) ? cert.ingredients : [{}];
+          ings.forEach(() => addHalalIngredient(halalCertCount));
+          const rows = card.querySelectorAll('.ing-sub-row');
+          ings.forEach((ing, i) => {
+            const row = rows[i];
+            if (!row) return;
+            const set = (sel, v) => { const e = row.querySelector(sel); if (e) e.value = v || ''; };
+            set('.hcert-ing-name-en', ing.nameEn);
+            set('.hcert-ing-inci',    ing.inci);
+            set('.hcert-ing-cas',     ing.cas);
+          });
+        });
+      }
+
+      // === 03 동물 미사용 ===
+      const s3 = document.getElementById('s3');
+      setRadioByValue(s3, 'anc', data.animalCertAvailable);
+
+      animalFreeList.innerHTML = '';
+      afCount = 0;
+      const afs = Array.isArray(data.animalFreeIngredients) ? data.animalFreeIngredients : [];
+      if (afs.length === 0) {
+        addAnimalFree();
+      } else {
+        afs.forEach(ing => {
+          addAnimalFree();
+          const card = animalFreeList.lastElementChild;
+          const set = (sel, v) => { const e = card.querySelector(sel); if (e) e.value = v || ''; };
+          set('.af-name', ing.name);
+          set('.af-inci', ing.inci);
+          set('.af-cas',  ing.cas);
+        });
+      }
+
+      // === 05 DB 등재 ===
+      const s5 = document.getElementById('s5');
+      setRadioByValue(s5, 'dbtype', data.dbType);
+      const ta = s5.querySelector('textarea');
+      if (ta) ta.value = data.extraNotes || '';
+      const agreeBox = s5.querySelector('input[type="checkbox"][data-required]');
+      if (agreeBox) agreeBox.checked = !!data._agreementChecked;
+
+      updateProgress();
+    } catch (e) {
+      console.error('Draft restore failed:', e);
+    } finally {
+      isRestoringDraft = false;
+    }
+  }
+
+  // ─── 페이지 진입 시 드래프트 감지 + 배너 표시 ───
+  function checkAndShowDraftBanner() {
+    const draft = loadDraftFromStorage();
+    if (!draft) return;
+    const banner = document.getElementById('draftBanner');
+    if (!banner) return;
+
+    const t = new Date(draft.savedAt);
+    const datePart = t.toLocaleDateString('ko-KR', { year:'numeric', month:'2-digit', day:'2-digit' });
+    const timePart = t.toLocaleTimeString('ko-KR', { hour:'2-digit', minute:'2-digit' });
+    banner.querySelector('.banner-time').textContent = `${datePart} ${timePart}`;
+    banner.classList.add('visible');
+
+    banner.querySelector('.btn-restore').onclick = () => {
+      restoreFormFromDraft(draft.data);
+      banner.classList.remove('visible');
+      lastSaveTime = new Date(draft.savedAt);
+      updateSaveIndicator('saved');
+    };
+    banner.querySelector('.btn-discard').onclick = () => {
+      if (confirm('이전 작성 내용을 삭제합니다. 계속하시겠습니까?')) {
+        clearDraft();
+        banner.classList.remove('visible');
+      }
+    };
+  }
+
+  // ─── 입력 이벤트 → 자동 저장 트리거 ───
+  document.addEventListener('input', e => {
+    if (e.target.matches('input, select, textarea')) scheduleAutosave();
+  });
+  document.addEventListener('change', e => {
+    if (e.target.matches('input[type="radio"], input[type="checkbox"], select')) scheduleAutosave();
+  });
+
+  // 페이지 진입 시 1회 — 다른 init 이 끝난 후 실행되도록 setTimeout 사용
+  setTimeout(checkAndShowDraftBanner, 100);
+
+  // ─── 수동 임시저장 버튼 ───
   function saveDraft(){
     const btn = event.target;
     const orig = btn.textContent;
-    btn.textContent = '저장됨 ✓';
-    btn.style.color = 'var(--good)';
+    const ok = saveDraftToStorage();
+    btn.textContent = ok ? '저장됨 ✓' : '저장 실패';
+    btn.style.color = ok ? 'var(--good)' : '#cc0000';
     setTimeout(()=>{ btn.textContent = orig; btn.style.color = ''; }, 1800);
   }
 
@@ -1231,6 +1560,10 @@
       // 7) 성공 모달
       document.getElementById('refNo').textContent = (result && result.refNo) || refNo;
       document.getElementById('modal').classList.add('show');
+
+      // 8) 임시저장 데이터 삭제
+      clearDraft();
+      updateSaveIndicator('idle');
 
     } catch (err) {
       console.error(err);
