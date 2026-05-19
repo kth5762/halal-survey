@@ -534,7 +534,7 @@
 <div class="gov-bar">
   <div class="wrap">
     <span>식품의약품안전처 위탁사업 · 2026 할랄 화장품 인증 지원</span>
-    <span>접수번호 자동 발급 · 응답 기한 2026.05.31</span>
+    <span>접수번호 자동 발급 · 응답 기한 2026.06.30</span>
   </div>
 </div>
 
@@ -570,7 +570,7 @@
     </p>
     <div class="doc-info">
       <div class="cell"><div class="label">접 수 번 호</div><div class="value">자동 발급</div></div>
-      <div class="cell"><div class="label">조 사 기 간</div><div class="value">2026.04.01 — 05.31</div></div>
+      <div class="cell"><div class="label">조 사 기 간</div><div class="value">2026.05.18 — 06.30</div></div>
       <div class="cell"><div class="label">담 당 기 관</div><div class="value">한국의약품시험연구원</div></div>
       <div class="cell"><div class="label">소요 시간</div><div class="value">약 12분</div></div>
     </div>
@@ -638,11 +638,6 @@
                 <label><input type="radio" name="biztype" /><span>유통/수입</span></label>
               </div>
               <div class="field-help">주력 사업 형태 1개 선택. 가장 가까운 항목을 골라 주세요.</div>
-            </div>
-            <div class="field">
-              <label class="lab">담당자명 <span class="req">*</span></label>
-              <input type="text" placeholder="실무 담당자" data-required>
-              <div class="field-help">본 설문 회신 및 후속 컨설팅 연락이 가능한 실무 담당자.</div>
             </div>
             <div class="field">
               <label class="lab">연락처 <span class="req">*</span></label>
@@ -905,7 +900,7 @@
 
           <div style="margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);">
             <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;">
-              <strong style="font-size:12.5px;color:var(--ink-soft);">복합 제품인 경우 전성분 정보 기재</strong>
+              <strong style="font-size:12.5px;color:var(--ink-soft);">본 인증에 등재된 원료</strong>
               <span style="font-size:11px;color:var(--muted);">원료명(영문) / INCI / CAS No.</span>
             </div>
             <div class="hcert-ing-list" id="hcertIngList${idx}"></div>
@@ -1109,10 +1104,11 @@
       cas:  (card.querySelector('.af-cas') ||{}).value || '',
     })).filter(i => i.name || i.inci || i.cas);
 
-    // === 04 첨부 ===
+    // === 04 첨부 — 파일은 submitForm 에서 base64 로 읽어 payload.files 로 전달.
+    //   collectFormData 단계에서는 메타데이터만 보관 (UI 표시용).
     const fileInput = document.getElementById('fileUp');
-    const attachments = fileInput && fileInput.files
-      ? Array.from(fileInput.files).map(f => `${f.name} (${(f.size/1024).toFixed(1)}KB)`)
+    const attachmentMeta = fileInput && fileInput.files
+      ? Array.from(fileInput.files).map(f => ({ name: f.name, size: f.size, type: f.type }))
       : [];
 
     return {
@@ -1120,17 +1116,17 @@
       companyName:      txt(s1, 0),
       bizRegNo:         txt(s1, 1),
       bizType:          radio(s1, 'biztype'),
-      contactName:      txt(s1, 2),
-      contactPhone:     txt(s1, 3),
-      contactEmail:     txt(s1, 4),
+      contactPhone:     txt(s1, 2),
+      contactEmail:     txt(s1, 3),
       // 02 할랄 인증
       hasHalal:         radio(s2, 'hashalal'),
       halalCerts:       halalCerts,
       // 03 동물 미사용
       animalCertAvailable:   radio(s3, 'anc'),
       animalFreeIngredients: animalFreeIngredients,
-      // 04 첨부
-      attachments:      attachments,
+      // 04 첨부 (링크는 서버 업로드 후 채워짐)
+      attachments:      [],
+      _attachmentMeta:  attachmentMeta,
       // 05 DB 등재
       dbType:           radio(s5, 'dbtype'),
       extraNotes:       ta(s5, 0),
@@ -1139,13 +1135,26 @@
     };
   }
 
-  function setSubmitState(state){
+  // ─── 파일을 base64 데이터 URL로 읽기 ───
+  function readFileAsBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const b64 = reader.result.split(',')[1]; // strip "data:mimeType;base64,"
+        resolve({ name: file.name, mimeType: file.type || 'application/octet-stream', data: b64, size: file.size });
+      };
+      reader.onerror = () => reject(new Error(`파일 읽기 실패: ${file.name}`));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function setSubmitState(state, msg) {
     const btn = document.querySelector('.btn.primary');
     if (!btn) return;
     if (state === 'loading') {
       btn.disabled = true;
       btn.dataset.orig = btn.textContent;
-      btn.textContent = '제출 중…';
+      btn.textContent = msg || '제출 중…';
       btn.style.opacity = '0.7';
     } else {
       btn.disabled = false;
@@ -1175,17 +1184,35 @@
       return;
     }
 
-    // 3) 데이터 수집 + 메타
-    const refNo = 'CL-HLL-' + new Date().toISOString().slice(0,10).replace(/-/g,'') +
-                  '-' + String(Math.floor(Math.random()*90000)+10000);
-    const payload = collectFormData();
-    payload._refNo = refNo;
-    payload._timestamp = new Date().toISOString();
+    // 3) 파일 크기 사전 검사 (총 15 MB 초과 시 경고)
+    const fileInput = document.getElementById('fileUp');
+    const files = fileInput && fileInput.files ? Array.from(fileInput.files) : [];
+    const totalSizeMB = files.reduce((sum, f) => sum + f.size, 0) / (1024 * 1024);
+    if (totalSizeMB > 15) {
+      alert(`첨부파일 총 용량이 ${totalSizeMB.toFixed(1)}MB 입니다.\n15MB 이하로 줄여 주세요.`);
+      return;
+    }
 
-    // 4) 전송
-    setSubmitState('loading');
+    setSubmitState('loading', '데이터 수집 중…');
+
     try {
-      // text/plain 으로 보내면 Apps Script Web App 의 CORS preflight 를 회피.
+      // 4) 폼 데이터 수집
+      const refNo = 'CL-HLL-' + new Date().toISOString().slice(0,10).replace(/-/g,'') +
+                    '-' + String(Math.floor(Math.random()*90000)+10000);
+      const payload = collectFormData();
+      payload._refNo = refNo;
+      payload._timestamp = new Date().toISOString();
+
+      // 5) 파일 base64 변환 (있을 경우)
+      if (files.length > 0) {
+        setSubmitState('loading', `파일 변환 중… (${files.length}개)`);
+        payload.files = await Promise.all(files.map(readFileAsBase64));
+      } else {
+        payload.files = [];
+      }
+
+      // 6) 전송
+      setSubmitState('loading', '서버 업로드 중…');
       const res = await fetch(SHEETS_WEBAPP_URL, {
         method: 'POST',
         mode: 'cors',
@@ -1195,15 +1222,16 @@
       });
 
       let result = null;
-      try { result = await res.json(); } catch (_) { /* 비-JSON 응답이어도 성공 처리 */ }
+      try { result = await res.json(); } catch (_) {}
 
       if (!res.ok || (result && result.ok === false)) {
         throw new Error((result && result.error) || `HTTP ${res.status}`);
       }
 
-      // 5) 성공 모달
+      // 7) 성공 모달
       document.getElementById('refNo').textContent = (result && result.refNo) || refNo;
       document.getElementById('modal').classList.add('show');
+
     } catch (err) {
       console.error(err);
       alert('제출 중 오류가 발생했습니다.\n\n' + (err.message || err) +
